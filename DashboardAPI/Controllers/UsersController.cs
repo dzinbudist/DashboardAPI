@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using WebApi.Services;
 using WebApi.Entities;
 using WebApi.Models.Users;
+using System.Net.NetworkInformation;
 
 namespace WebApi.Controllers
 {
@@ -129,6 +130,17 @@ namespace WebApi.Controllers
         {
             _userService.Delete(id);
             return Ok();
+        }
+
+        [AllowAnonymous]
+        [HttpGet("ping")]
+        public IActionResult Ping()
+        {
+            string host = "www.google.com";
+            Ping servicePing = new Ping();
+            PingReply reply = servicePing.Send(host);
+
+            return new OkObjectResult($"{host}, {reply.Address}, {reply.Status}");
         }
     }
 }
