@@ -13,6 +13,7 @@ using WebApi.Services;
 using WebApi.Entities;
 using WebApi.Models.Users;
 using System.Net.NetworkInformation;
+using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
@@ -134,13 +135,14 @@ namespace WebApi.Controllers
 
         [AllowAnonymous]
         [HttpGet("ping")]
-        public IActionResult Ping()
+        public IActionResult Ping(string hostname)
         {
-            string host = "www.google.com";
-            Ping servicePing = new Ping();
-            PingReply reply = servicePing.Send(host);
+            string host = "www." + hostname + ".com";
 
-            return new OkObjectResult($"{host}, {reply.Address}, {reply.Status}");
+            Ping servicePing = new Ping();
+            var reply = servicePing.Send(host);
+            
+            return Ok($"{reply.Status}, {reply.Address}, {host}");
         }
     }
 }
