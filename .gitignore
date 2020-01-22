@@ -4,3 +4,7 @@
 
 /.vs
 /DashboardAPI/.vs/DashboardAPI/v16/Server/sqlite3
+/DashboardAPI/.config
+/DashboardAPI/WebApi.csproj.user
+/DashboardAPI/Services/PublishProfiles
+/DashboardAPI/.vs/DashboardAPI/DesignTimeBuild
